@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "sintetizador2/1.0.0": {
+        "runtime": {
+          "sintetizador2.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "sintetizador2/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
