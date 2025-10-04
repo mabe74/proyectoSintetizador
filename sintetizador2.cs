@@ -19,10 +19,14 @@ namespace sintetizador2
         private int _osciladores; //Numero de osciladores
         private int _polifonia; //Numero de notas que puede tocar al mismo tiempo
 
+        //================================================================================================================
+
         //Atributos estáticos (comunes a todos los sintes)
         private static int _cantidadDeSintes = 0;
         private static string _fabricante = "Behringer";
         private static string versionFirmeware = "version 1.0.0";
+
+        //=================================================================================================================
 
         //Constructor
         public sintetizador2(string modelo, bool tieneTeclas, int numeroDeTeclas, bool tienePantalla, int tensionDeTrabajo, 
@@ -44,9 +48,13 @@ namespace sintetizador2
             _cantidadDeSintes++;
         }
 
+        //===========================================================================================================================
+
         // Propiedades estáticas
         public static int CantidadDeSintes => _cantidadDeSintes;
         public static string Fabricante => _fabricante;
+
+        //===========================================================================================================================
 
         public static string Saludar()
         {
@@ -58,7 +66,7 @@ namespace sintetizador2
             return saludar.ToString();   
         }
 
-
+        //===========================================================================================================================
         
         //Sintetizador 1
         public string EncenderSinte1(bool encendido)
@@ -107,6 +115,8 @@ namespace sintetizador2
 
         }
 
+        //====================================================================================================================
+
         //Sintetizador 2
         public string EncenderSinte2(bool encendido)
         {
@@ -152,28 +162,41 @@ namespace sintetizador2
 
         }
 
-        
-        public string ChequearBateria()
+        //=========================================================================================================================
+
+        public string ChequearBateriaMensaje()
         {
             StringBuilder chequearBateria = new StringBuilder();
+            chequearBateria.Append("\nChequeando batería");
+            return chequearBateria.ToString();
+
+        }
+
+        //=========================================================================================================================
+
+        public void MoverPuntos()
+        {
+           
             
-            chequearBateria.Append("\nChequeando batería\n");
             for (int i = 0; i < 10; i++)
             {
                 Thread.Sleep(500); // medio segundo de espera (delay en milisegundos)
                 Console.Write("."); // imprime un punto sin salto de línea
             }
             
-            return chequearBateria.ToString();
+            
             //Console.WriteLine(); // para terminar la línea
         }
 
+        //=========================================================================================================================
 
         public void CargarMaquinas()
         {
 
 
         }
+
+        //=========================================================================================================================
 
         
         public void GenerarOndaSenoAnimada()
@@ -218,6 +241,7 @@ namespace sintetizador2
             }
         }
 
+        //=============================================================================================================================
             public void GenerarOndaTriangular()
             {
 
@@ -227,6 +251,8 @@ namespace sintetizador2
 
 
             }
+
+        //=============================================================================================================================
             
             //Metodos Get y Set
 
@@ -295,6 +321,8 @@ namespace sintetizador2
                 
 
         }
+
+        //===========================================================================================================================
 
 
             //Get
