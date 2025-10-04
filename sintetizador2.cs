@@ -15,6 +15,7 @@ namespace sintetizador2
         private int _tensionDeTrabajo;
         private string _tipoDeTensionDeTrabajo;
         private int _nivelBateria; //Nivel de bateria del sintetizador (0-100)
+        private string _estadoBateriaMensaje;
         private int _osciladores; //Numero de osciladores
         private int _polifonia; //Numero de notas que puede tocar al mismo tiempo
 
@@ -37,6 +38,7 @@ namespace sintetizador2
             this._tensionDeTrabajo = tensionDeTrabajo;
             this._tipoDeTensionDeTrabajo = tipoDeTensionDeTrabajo;
             this._nivelBateria = 100; //Valor por defecto
+            this._estadoBateriaMensaje = "";
             this._osciladores = osciladores;
             this._polifonia = polifonia;
             _cantidadDeSintes++;
@@ -45,6 +47,18 @@ namespace sintetizador2
         // Propiedades estáticas
         public static int CantidadDeSintes => _cantidadDeSintes;
         public static string Fabricante => _fabricante;
+
+        public static string Saludar()
+        {
+            StringBuilder saludar = new StringBuilder();
+
+            saludar.AppendLine("\nBienvenido!\n");
+
+
+            return saludar.ToString();   
+        }
+
+
         
         //Sintetizador 1
         public string EncenderSinte1(bool encendido)
@@ -57,10 +71,9 @@ namespace sintetizador2
                 StringBuilder info1 = new StringBuilder();
                 
                 info1.AppendLine("Sintetizador 1: ON");
-                //info1.AppendLine("Bienvenido!");
+               
                
                 info1.AppendLine($"Modelo: {_modelo}");
-              
                 info1.AppendLine($"Pantalla: {_tienePantalla}");
                 info1.AppendLine($"Tensión: {_tensionDeTrabajo} volts");
                 info1.AppendLine($"Tipo de tensión: {_tipoDeTensionDeTrabajo}");
@@ -88,7 +101,7 @@ namespace sintetizador2
             else
             {
                 StringBuilder info1 = new StringBuilder();
-                info1.AppendLine("Sintetizador: OFF");
+                info1.AppendLine("Sintetizador 1: OFF");
                 return info1.ToString();  
             }
 
@@ -133,23 +146,33 @@ namespace sintetizador2
             else
             {
                 StringBuilder info2 = new StringBuilder();
-                info2.Append("Sintetizador: OFF");
+                info2.Append("Sintetizador 2: OFF");
                 return info2.ToString();
             }
 
         }
 
         
-        public void ChequearBateria()
+        public string ChequearBateria()
         {
-            Console.WriteLine("Chequeando batería");
-            for (int i = 0; i < 5; i++)
+            StringBuilder chequearBateria = new StringBuilder();
+            
+            chequearBateria.Append("\nChequeando batería\n");
+            for (int i = 0; i < 10; i++)
             {
                 Thread.Sleep(500); // medio segundo de espera (delay en milisegundos)
                 Console.Write("."); // imprime un punto sin salto de línea
             }
+            
+            return chequearBateria.ToString();
+            //Console.WriteLine(); // para terminar la línea
+        }
 
-            Console.WriteLine(); // para terminar la línea
+
+        public void CargarMaquinas()
+        {
+
+
         }
 
         
@@ -215,15 +238,8 @@ namespace sintetizador2
             {
             
                 StringBuilder sb = new StringBuilder();
-            
-                if (!_encendido)
 
-                {
-                    
-                    sb.AppendLine("Sintetizador: OFF");
-                    this._nivelBateria = nivelBateria;
                 
-                }
 
                 //Normaliza el nivel de bateria
                 if (nivelBateria < 0)
@@ -245,6 +261,7 @@ namespace sintetizador2
                     
                     this._nivelBateria = nivelBateria;
                     sb.AppendLine("Estado batería: COMPLETO ");
+
                     
                 }
                 else if (nivelBateria >= 66)
@@ -253,6 +270,7 @@ namespace sintetizador2
                     this._nivelBateria = nivelBateria;
                     sb.AppendLine("Estado batería: OK + ");
                     
+                    
 
                 }
                 else if(nivelBateria >= 33)
@@ -260,11 +278,12 @@ namespace sintetizador2
                     
                     this._nivelBateria = nivelBateria;
                     sb.AppendLine("Estado batería: OK - ");
+                
                     
 
                 }
 
-
+            
 
                 else
                 {
@@ -272,9 +291,10 @@ namespace sintetizador2
                     sb.AppendLine("Recargar batería");
                 }
 
-                return sb.ToString();
-        
-            }
+               return sb.ToString();
+                
+
+        }
 
 
             //Get

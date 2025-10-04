@@ -11,32 +11,37 @@ namespace sintetizador2
             sintetizador2 miSinte2 = new sintetizador2("ARP 2600", false, 16, false, 24, "DC", 4, 1); //Crea instancia para el sinte2
 
             Console.WriteLine($"Fabricante: {sintetizador2.Fabricante}");
-            Console.WriteLine($"Cantidad de sintes creados: {sintetizador2.CantidadDeSintes}");
+            Console.WriteLine($"Cantidad de sintetizadores creados: {sintetizador2.CantidadDeSintes}");
 
-            Console.WriteLine("\nBienvenido!\n");
+            string saludo = sintetizador2.Saludar();
+            Console.WriteLine(saludo);
 
             string infoEncendido1 = miSinte1.EncenderSinte1(true); //Enciende / apaga sintetizador 1
             string infoEncendido2 = miSinte2.EncenderSinte2(true); //Enciende / apaga sintetizador 2
-            Console.WriteLine(infoEncendido1);
-            Console.WriteLine(infoEncendido2);  
-
-
-
-            
-            miSinte1.ChequearBateria();
-            miSinte1.SetEstadoBateria(87);
            
-            Console.WriteLine($"Carga batería sintetizador 1: {miSinte1.GetEstadoBateria()} % ");
+            //Sintetizador 1
+            Console.WriteLine(infoEncendido1);
+            string chequeaBateria1 = miSinte1.ChequearBateria();
+            Console.WriteLine(chequeaBateria1);
+            string estadoBateria1 = miSinte1.SetEstadoBateria(65); //Setea el nivel de carga de la batería
+            Console.WriteLine($"\nCarga batería sintetizador 1: {miSinte1.GetEstadoBateria()} % ");
+            
+            Console.WriteLine(estadoBateria1);
+
 
             Console.WriteLine("");
+            Console.WriteLine("==========================================");
+            Console.WriteLine("");
 
-            miSinte2.ChequearBateria();
-            miSinte2.SetEstadoBateria(66);
-            Console.WriteLine($"Carga batería sintetizador 2: {miSinte2.GetEstadoBateria()} % ");
+            //Sintetizador 2
+            Console.WriteLine(infoEncendido2);  
+            string chequeaBateria2 = miSinte2.ChequearBateria();
+            Console.WriteLine(chequeaBateria2);
+            string estadoBateria2 = miSinte2.SetEstadoBateria(44); //Setea el nivel de carga de la batería
+            Console.WriteLine($"\nCarga batería sintetizador 2: {miSinte2.GetEstadoBateria()} % ");
+                
+            Console.WriteLine(estadoBateria2);
 
-
-
-            //sintetizador2 nivelBateria = sintetizador2.GetEstadoBateria();
 
 
 

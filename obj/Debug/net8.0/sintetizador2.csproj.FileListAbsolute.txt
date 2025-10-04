@@ -26,3 +26,4 @@ C:\Users\Usuario\Desktop\MARCOS_b\c_sharp\ejercicios\sintetizador\sintetizador2\
 C:\Users\Usuario\Desktop\MARCOS_b\c_sharp\ejercicios\sintetizador\sintetizador2\sintetizador2\obj\Debug\net8.0\sintetizador2.pdb
 C:\Users\Usuario\Desktop\MARCOS_b\c_sharp\ejercicios\sintetizador\sintetizador2\sintetizador2\obj\Debug\net8.0\sintetizador2.genruntimeconfig.cache
 C:\Users\Usuario\Desktop\MARCOS_b\c_sharp\ejercicios\sintetizador\sintetizador2\sintetizador2\obj\Debug\net8.0\ref\sintetizador2.dll
+C:\Users\M&G\Desktop\curso_python_cfp6\c_sharp\ejercicios\sintetizador\sintetizador2\sintetizador2\obj\Debug\net8.0\sintetizador2.sourcelink.json
