@@ -16,6 +16,7 @@ namespace sintetizador2
         private string _tipoDeTensionDeTrabajo;
         private int _nivelBateria; //Nivel de bateria del sintetizador (0-100)
         private string _estadoBateriaMensaje;
+        private string _mensajeBateria;
         private int _osciladores; //Numero de osciladores
         private int _polifonia; //Numero de notas que puede tocar al mismo tiempo
 
@@ -43,6 +44,7 @@ namespace sintetizador2
             this._tipoDeTensionDeTrabajo = tipoDeTensionDeTrabajo;
             this._nivelBateria = 100; //Valor por defecto
             this._estadoBateriaMensaje = "";
+            this._mensajeBateria = "";
             this._osciladores = osciladores;
             this._polifonia = polifonia;
             _cantidadDeSintes++;
@@ -67,7 +69,16 @@ namespace sintetizador2
         }
 
         //===========================================================================================================================
-        
+
+
+        public void CargarMaquinas()
+        {
+
+
+        }
+
+        //===========================================================================================================================
+
         //Sintetizador 1
         public string EncenderSinte1(bool encendido)
         {
@@ -190,15 +201,6 @@ namespace sintetizador2
 
         //=========================================================================================================================
 
-        public void CargarMaquinas()
-        {
-
-
-        }
-
-        //=========================================================================================================================
-
-        
         public void GenerarOndaSenoAnimada()
         {
 
@@ -253,19 +255,82 @@ namespace sintetizador2
             }
 
         //=============================================================================================================================
-            
-            //Metodos Get y Set
 
-            //Comprueba el estado de la batería con los metodos Get y Set
+        //Metodos Get y Set
 
-            //Set
-            public string SetEstadoBateria(int nivelBateria)
+        //Comprueba el estado de la batería con los metodos Get y Set
 
+
+        public int EstadoBateria 
+        
+        {   get { return this._nivelBateria; }
+
+            set
             {
-            
                 StringBuilder sb = new StringBuilder();
 
-                
+                //Normaliza el nivel de bateria
+                if (value < 0)
+                {
+                    value = 0;
+                }
+
+                if (value > 100)
+                {
+                    value = 100;
+                }
+
+                //Asigna el valor al atributo
+                this._nivelBateria = value;
+
+                //Comprueba el estado de la bateria
+                if (value == 100)
+                {
+
+                    this._nivelBateria = value;
+                    sb.AppendLine("Estado batería: COMPLETO ");
+
+                }
+                else if (value >= 66)
+                {
+
+                    this._nivelBateria = value;
+                    sb.AppendLine("Estado batería: OK + ");
+
+                }
+                else if (value >= 33)
+                {
+
+                    this._nivelBateria = value;
+                    sb.AppendLine("Estado batería: OK - ");
+
+                }
+
+                else
+                {
+                    //this._nivelBateria = value;
+                    sb.AppendLine("Recargar batería");
+                }
+
+                _mensajeBateria = sb.ToString();
+
+            }
+        }
+
+        public string MensajeBateria 
+        { get { return _mensajeBateria;}
+
+
+
+
+        /*
+        public string SetEstadoBateria(int nivelBateria)
+
+            {
+
+                StringBuilder sb = new StringBuilder();
+
+
 
                 //Normaliza el nivel de bateria
                 if (nivelBateria < 0)
@@ -284,32 +349,32 @@ namespace sintetizador2
                 //Comprueba el estado de la bateria
                 if (nivelBateria == 100)
                 {
-                    
+
                     this._nivelBateria = nivelBateria;
                     sb.AppendLine("Estado batería: COMPLETO ");
 
-                    
+
                 }
                 else if (nivelBateria >= 66)
                 {
-                    
+
                     this._nivelBateria = nivelBateria;
                     sb.AppendLine("Estado batería: OK + ");
-                    
-                    
+
+
 
                 }
                 else if(nivelBateria >= 33)
                 {
-                    
+
                     this._nivelBateria = nivelBateria;
                     sb.AppendLine("Estado batería: OK - ");
-                
-                    
+
+
 
                 }
 
-            
+
 
                 else
                 {
@@ -318,7 +383,7 @@ namespace sintetizador2
                 }
 
                return sb.ToString();
-                
+
 
         }
 
@@ -330,19 +395,9 @@ namespace sintetizador2
             {
                 return this._nivelBateria;
             }   
-        
-
-      
 
 
-        
-
-
-
-       
-
-
-
+      */
     }
 }
 
