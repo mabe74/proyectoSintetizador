@@ -2,13 +2,27 @@
 
 namespace sintetizador2
 {
+    public enum ModelosSintes
+    {
+        MonoPoly = 1,
+        ARP2600 = 2,
+        Model_D = 3,
+        Solina = 4,
+        Oddissey = 5,
+        MS_5 = 6,
+        MS_101 = 7
+    }
+
+
+
+
     internal class sintetizador2
     {
 
         //Atributos de instancia (cada sinte tiene los suyos)
         private bool _encendido;
-        
-        private string _modelo;
+
+        private ModelosSintes _modelo;
         private bool _tieneTeclas;
         private int _numeroDeTeclas;
         private bool _tienePantalla;
@@ -19,6 +33,7 @@ namespace sintetizador2
         private string _mensajeBateria;
         private int _osciladores; //Numero de osciladores
         private int _polifonia; //Numero de notas que puede tocar al mismo tiempo
+        private int _opcion; //Elije el sinte
 
         //================================================================================================================
 
@@ -30,12 +45,12 @@ namespace sintetizador2
         //=================================================================================================================
 
         //Constructor
-        public sintetizador2(string modelo, bool tieneTeclas, int numeroDeTeclas, bool tienePantalla, int tensionDeTrabajo, 
+        public sintetizador2(ModelosSintes modelo, bool tieneTeclas, int numeroDeTeclas, bool tienePantalla, int tensionDeTrabajo,
                              string tipoDeTensionDeTrabajo, int osciladores, int polifonia)
 
         {
             this._encendido = false; //Valor por defecto
-            
+             
             this._modelo = modelo;
             this._tieneTeclas = tieneTeclas;
             this._numeroDeTeclas = numeroDeTeclas;
@@ -47,7 +62,7 @@ namespace sintetizador2
             this._mensajeBateria = "";
             this._osciladores = osciladores;
             this._polifonia = polifonia;
-            _cantidadDeSintes++;
+            _cantidadDeSintes++;// ver para constructor estatico
         }
 
         //===========================================================================================================================
@@ -65,7 +80,7 @@ namespace sintetizador2
             saludar.AppendLine("\nBienvenido!\n");
 
 
-            return saludar.ToString();   
+            return saludar.ToString();
         }
 
         //===========================================================================================================================
@@ -73,26 +88,59 @@ namespace sintetizador2
 
         public void CargarMaquinas()
         {
-
+            //Listas
 
         }
 
         //===========================================================================================================================
 
-        //Sintetizador 1
+        /*
+        public int ElegirSinte(int sinte)
+        {
+
+            do
+            {
+                Console.WriteLine("1.- MonoPoly");
+                Console.WriteLine("2.- ARP2600");
+
+
+                if (sinte == 1)
+                {
+
+
+                
+                
+                
+                }
+
+
+
+
+
+
+            } while (true);
+                
+        
+        
+        
+        
+        }
+        */
+
+        //Sintetizadores
         public string EncenderSinte1(bool encendido)
         {
             this._encendido = encendido;
 
             if (_encendido)
             {
-                
+
                 StringBuilder info1 = new StringBuilder();
-                
-                info1.AppendLine("Sintetizador 1: ON");
-               
-               
-                info1.AppendLine($"Modelo: {_modelo}");
+
+                info1.AppendLine($"{_modelo}: ON");
+
+
+                //info1.AppendLine($"Modelo: {_modelo}");
                 info1.AppendLine($"Pantalla: {_tienePantalla}");
                 info1.AppendLine($"Tensión: {_tensionDeTrabajo} volts");
                 info1.AppendLine($"Tipo de tensión: {_tipoDeTensionDeTrabajo}");
@@ -103,72 +151,25 @@ namespace sintetizador2
                 {
 
                     info1.AppendLine($"Número de teclas: {_numeroDeTeclas}");
-                
+
                 }
                 else
                 {
 
                     info1.AppendLine($"No posee teclas");
-                
+
                 }
 
 
                 return info1.ToString();
 
-                
+
             }
             else
             {
                 StringBuilder info1 = new StringBuilder();
                 info1.AppendLine("Sintetizador 1: OFF");
-                return info1.ToString();  
-            }
-
-        }
-
-        //====================================================================================================================
-
-        //Sintetizador 2
-        public string EncenderSinte2(bool encendido)
-        {
-            this._encendido = encendido;
-
-            if (_encendido)
-            {
-
-                StringBuilder info2 = new StringBuilder();
-
-                info2.AppendLine("Sintetizador 2: ON\n");
-                
-                info2.AppendLine($"Modelo: {_modelo}");
-                info2.AppendLine($"Pantalla: {_tienePantalla}");
-                info2.AppendLine($"Tensión: {_tensionDeTrabajo} volts");
-                info2.AppendLine($"Tipo de tensión: {_tipoDeTensionDeTrabajo}");
-                info2.AppendLine($"Cantidad de osciladores: {_osciladores}");
-                info2.AppendLine($"Polifonia: {_polifonia}");
-
-                if (_tieneTeclas)
-                {
-
-                    info2.AppendLine($"Número de teclas: {_numeroDeTeclas}");
-                }
-                else
-                {
-
-                    info2.AppendLine($"No posee teclas");
-                   
-                }
-
-
-                return info2.ToString();
-
-
-            }
-            else
-            {
-                StringBuilder info2 = new StringBuilder();
-                info2.Append("Sintetizador 2: OFF");
-                return info2.ToString();
+                return info1.ToString();
             }
 
         }
@@ -187,15 +188,15 @@ namespace sintetizador2
 
         public void MoverPuntos()
         {
-           
-            
+
+
             for (int i = 0; i < 10; i++)
             {
                 Thread.Sleep(500); // medio segundo de espera (delay en milisegundos)
                 Console.Write("."); // imprime un punto sin salto de línea
             }
-            
-            
+
+
             //Console.WriteLine(); // para terminar la línea
         }
 
@@ -244,26 +245,25 @@ namespace sintetizador2
         }
 
         //=============================================================================================================================
-            public void GenerarOndaTriangular()
-            {
+        public void GenerarOndaTriangular()
+        {
 
 
 
 
 
 
-            }
+        }
 
         //=============================================================================================================================
 
-        //Metodos Get y Set
+        //Metodos Get y Set (propiedades)
+        //Comprueba el estado de la batería
 
-        //Comprueba el estado de la batería con los metodos Get y Set
+        public int EstadoBateria
 
-
-        public int EstadoBateria 
-        
-        {   get { return this._nivelBateria; }
+        {
+            get { return this._nivelBateria; }
 
             set
             {
@@ -288,121 +288,78 @@ namespace sintetizador2
                 {
 
                     this._nivelBateria = value;
-                    sb.AppendLine("Estado batería: COMPLETO ");
+                   
 
                 }
                 else if (value >= 66)
                 {
 
                     this._nivelBateria = value;
-                    sb.AppendLine("Estado batería: OK + ");
+                   
 
                 }
                 else if (value >= 33)
                 {
 
                     this._nivelBateria = value;
-                    sb.AppendLine("Estado batería: OK - ");
+                    
 
                 }
 
                 else
                 {
-                    //this._nivelBateria = value;
-                    sb.AppendLine("Recargar batería");
+                    this._nivelBateria = value;
                 }
-
-                _mensajeBateria = sb.ToString();
 
             }
         }
 
-        public string MensajeBateria 
-        { get { return _mensajeBateria;}
+       
+
+        //Propiedad autoreferenciada
+        public string MostrarEstadoBateria
+        {
+
+            get { return this._mensajeBateria; }
 
 
 
-
-        /*
-        public string SetEstadoBateria(int nivelBateria)
-
+            set
             {
-
                 StringBuilder sb = new StringBuilder();
 
-
-
-                //Normaliza el nivel de bateria
-                if (nivelBateria < 0)
+                if (this._nivelBateria == 100)
                 {
-                    nivelBateria = 0;
-                }
-
-                if (nivelBateria > 100)
-                {
-                    nivelBateria = 100;
-                }
-
-                //Asigna el valor al atributo
-                this._nivelBateria = nivelBateria;
-
-                //Comprueba el estado de la bateria
-                if (nivelBateria == 100)
-                {
-
-                    this._nivelBateria = nivelBateria;
-                    sb.AppendLine("Estado batería: COMPLETO ");
-
+                    sb.AppendLine("Estado de batería completo");
 
                 }
-                else if (nivelBateria >= 66)
+                else if (this._nivelBateria >= 66)
                 {
 
-                    this._nivelBateria = nivelBateria;
                     sb.AppendLine("Estado batería: OK + ");
 
-
-
                 }
-                else if(nivelBateria >= 33)
+                else if (this._nivelBateria >=33)
                 {
 
-                    this._nivelBateria = nivelBateria;
                     sb.AppendLine("Estado batería: OK - ");
-
-
-
+                
                 }
-
-
-
                 else
                 {
-                    this._nivelBateria = nivelBateria;
+
                     sb.AppendLine("Recargar batería");
+
                 }
 
-               return sb.ToString();
+                this._mensajeBateria = sb.ToString();
+            }
 
 
+
+            }
         }
-
-        //===========================================================================================================================
-
-
-            //Get
-            public int GetEstadoBateria()
-            {
-                return this._nivelBateria;
-            }   
-
-
-      */
     }
-}
-
-
-
 
 
 
